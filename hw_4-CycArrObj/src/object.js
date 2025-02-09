@@ -38,6 +38,6 @@ const newMenu = {
     },
 };
 
-newMenu.weekMenu(this.name, this.location);
-newMenu.mondayMenu(this.menuMonday);
-newMenu.tuesdayMenu(this.menuTuesday);
+newMenu.weekMenu();
+newMenu.mondayMenu();
+newMenu.tuesdayMenu();
