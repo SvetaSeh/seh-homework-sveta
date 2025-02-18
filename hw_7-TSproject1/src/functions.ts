@@ -1,11 +1,9 @@
 // Перша частина завдання
 
 function sumNewAr(something: number[]): number {
-    let s = 0;
-    for (const num of something) {
-        s += num;
-    }
-    return s;
+    return something.reduce(function (sum, num) {
+        return sum + num;
+    }, 0);
 }
 
 console.log(sumNewAr([15, 25, 48, 95]));
@@ -16,8 +14,8 @@ function runArrOne<T, U>(d1: T[], d2: U[]): void {
     console.log(d1, d2);
 }
 
-const d1: number[] = [3, 9, 27];
-const d2: string[] = ['red', 'blue', 'green'];
+const d1 = [3, 9, 27];
+const d2 = ['red', 'blue', 'green'];
 
 runArrOne(d1, d2);
 
@@ -27,8 +25,8 @@ function runArrTwo<T, U>(f1: T[], f2: U[]): (T | U)[] {
     return [...f1, ...f2];
 }
 
-const numberArr: number[] = [15, 26, 59];
-const stringArr: string[] = ['butter', 'milk', 'flour'];
+const numberArr = [15, 26, 59];
+const stringArr = ['butter', 'milk', 'flour'];
 
 const mixArr: (number | string)[] = runArrTwo(numberArr, stringArr);
 
