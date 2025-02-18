@@ -5,5 +5,14 @@
     "eslint-plugin-unicorn": "^56.0.1",
     "globals": "^15.14.0",
     "@stylistic/eslint-plugin": "^3.0.1"
-  }
+  },
+  "name": "hw_6-catchasync",
+  "version": "1.0.0",
+  "description": "recommended config from me for programming on a JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
