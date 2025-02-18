@@ -28,6 +28,6 @@ function runArrTwo<T, U>(f1: T[], f2: U[]): (T | U)[] {
 const numberArr = [15, 26, 59];
 const stringArr = ['butter', 'milk', 'flour'];
 
-const mixArr: (number | string)[] = runArrTwo(numberArr, stringArr);
+const mixArr = runArrTwo(numberArr, stringArr);
 
 console.log(mixArr);
