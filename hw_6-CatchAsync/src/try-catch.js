@@ -1,20 +1,19 @@
-function throwError() {
-    throw new Error('What the error');
-}
+async function getWeb() {
 
-
-function example() {
-    console.log('Some text');
-    throwError();
-}
-
-try {
-    example();
-} catch (e) {
-    if (e.message !== 'What the error') {
-        throw e;
+    try {
+        await fetch('https://invalid-url.example.com');
+        console.log('You have access first website');
+    } catch {
+        console.log ('Error first website');
+        try {
+            await fetch('https://lms.academius.io/api/graphql');
+            console.log('You have access second website');
+        } catch (error) {
+            if (error.message !== 'Error second website')
+                throw error;
+        }
+        console.log('Website exist');
     }
-    console.log('Error:', e.message);
 }
 
-console.log('After try block');
+getWeb();
