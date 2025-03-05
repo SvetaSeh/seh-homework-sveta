@@ -10,7 +10,6 @@ function fetchJson(url) {
             console.error('Error fetching JSON:', error);
             throw error;});
 }
-
 function processData(data) {
     console.log('Processed Data:', data);
 }
