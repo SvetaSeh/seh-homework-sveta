@@ -1,0 +1,575 @@
+{
+	"info": {
+		"_postman_id": "a54bc16d-9175-49ea-a8ad-5890bc3bda57",
+		"name": "HomeWork12Seh",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "14572847"
+	},
+	"item": [
+		{
+			"name": "Test 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Content type is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response schema contains required fields\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('array');\r",
+							"  responseData.forEach(function(joke) {\r",
+							"    pm.expect(joke).to.have.property('type').that.is.a('string');\r",
+							"    pm.expect(joke).to.have.property('setup').that.is.a('string');\r",
+							"    pm.expect(joke).to.have.property('punchline').that.is.a('string');\r",
+							"    pm.expect(joke).to.have.property('id').that.is.a('number');\r",
+							"  });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://official-joke-api.appspot.com/random_ten"
+			},
+			"response": []
+		},
+		{
+			"name": "Test 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is within an acceptable range\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Content type is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields - type, setup, punchline, and id\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('array');\r",
+							"    \r",
+							"    responseData.forEach(function(joke) {\r",
+							"        pm.expect(joke).to.have.property('type');\r",
+							"        pm.expect(joke).to.have.property('setup');\r",
+							"        pm.expect(joke).to.have.property('punchline');\r",
+							"        pm.expect(joke).to.have.property('id');\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Type, setup, and punchline are non-empty strings\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('array');\r",
+							"  responseData.forEach(joke => {\r",
+							"    pm.expect(joke).to.be.an('object');\r",
+							"    pm.expect(joke.type).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Type should not be empty\");\r",
+							"    pm.expect(joke.setup).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Setup should not be empty\");\r",
+							"    pm.expect(joke.punchline).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Punchline should not be empty\");\r",
+							"  });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://official-joke-api.appspot.com/jokes/random/5"
+			},
+			"response": []
+		},
+		{
+			"name": "Test 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"\r",
+							"  pm.expect(responseData).to.be.an('array');\r",
+							"  responseData.forEach(function(joke) {\r",
+							"    pm.expect(joke).to.have.property('type');\r",
+							"    pm.expect(joke).to.have.property('setup');\r",
+							"    pm.expect(joke).to.have.property('punchline');\r",
+							"    pm.expect(joke).to.have.property('id');\r",
+							"  });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Type, setup, and punchline are non-empty strings\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+							"  \r",
+							"  responseData.forEach(function(joke) {\r",
+							"    pm.expect(joke).to.have.property('type').that.is.a('string').and.to.have.lengthOf.at.least(1, \"Type should not be empty\");\r",
+							"    pm.expect(joke).to.have.property('setup').that.is.a('string').and.to.have.lengthOf.at.least(1, \"Setup should not be empty\");\r",
+							"    pm.expect(joke).to.have.property('punchline').that.is.a('string').and.to.have.lengthOf.at.least(1, \"Punchline should not be empty\");\r",
+							"  });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"ID is a non-negative integer\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  responseData.forEach(function(joke) {\r",
+							"    pm.expect(joke.id).to.be.a('number').and.to.be.at.least(0);\r",
+							"  });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://official-joke-api.appspot.com/jokes/programming/random"
+			},
+			"response": []
+		},
+		{
+			"name": "Test 4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"\r",
+							"  pm.expect(responseData).to.be.an('array');\r",
+							"\r",
+							"  responseData.forEach(function(joke) {\r",
+							"    pm.expect(joke).to.have.property('type').that.is.a('string');\r",
+							"    pm.expect(joke).to.have.property('setup').that.is.a('string');\r",
+							"    pm.expect(joke).to.have.property('punchline').that.is.a('string');\r",
+							"    pm.expect(joke).to.have.property('id').that.is.a('number');\r",
+							"  });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Type, setup, and punchline are non-empty strings\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('array');\r",
+							"  responseData.forEach(function(joke) {\r",
+							"    pm.expect(joke.type).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Type should not be empty\");\r",
+							"    pm.expect(joke.setup).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Setup should not be empty\");\r",
+							"    pm.expect(joke.punchline).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Punchline should not be empty\");\r",
+							"  });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"ID is a non-negative integer\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('array');\r",
+							"    \r",
+							"    responseData.forEach(function(joke) {\r",
+							"        pm.expect(joke.id).to.be.a('number').and.to.be.at.least(0);\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://official-joke-api.appspot.com/jokes/programming/ten"
+			},
+			"response": []
+		},
+		{
+			"name": "Test 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Content type is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response schema contains type, setup, punchline, and id\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('array');\r",
+							"    \r",
+							"    responseData.forEach(function(joke) {\r",
+							"        pm.expect(joke).to.be.an('object');\r",
+							"        pm.expect(joke.type).to.be.a('string');\r",
+							"        pm.expect(joke.setup).to.be.a('string');\r",
+							"        pm.expect(joke.punchline).to.be.a('string');\r",
+							"        pm.expect(joke.id).to.be.a('number');\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Type, setup, and punchline are non-empty strings\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+							"  \r",
+							"  responseData.forEach(function(joke) {\r",
+							"    pm.expect(joke).to.have.property('type').that.is.a('string').and.to.have.lengthOf.at.least(1, \"Type should not be empty\");\r",
+							"    pm.expect(joke).to.have.property('setup').that.is.a('string').and.to.have.lengthOf.at.least(1, \"Setup should not be empty\");\r",
+							"    pm.expect(joke).to.have.property('punchline').that.is.a('string').and.to.have.lengthOf.at.least(1, \"Punchline should not be empty\");\r",
+							"  });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://official-joke-api.appspot.com/jokes/random/250"
+			},
+			"response": []
+		},
+		{
+			"name": "Test 6",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response schema contains required fields - type, setup, punchline, and id\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('array');\r",
+							"    responseData.forEach(joke => {\r",
+							"        pm.expect(joke.type).to.exist;\r",
+							"        pm.expect(joke.setup).to.exist;\r",
+							"        pm.expect(joke.punchline).to.exist;\r",
+							"        pm.expect(joke.id).to.exist;\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://official-joke-api.appspot.com/jokes/random/25"
+			},
+			"response": []
+		},
+		{
+			"name": "Test 7",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate the schema for type, setup, punchline, and id properties\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('array');\r",
+							"    \r",
+							"    responseData.forEach(function(joke) {\r",
+							"        pm.expect(joke).to.be.an('object');\r",
+							"        pm.expect(joke).to.have.property('type').that.is.a('string');\r",
+							"        pm.expect(joke).to.have.property('setup').that.is.a('string');\r",
+							"        pm.expect(joke).to.have.property('punchline').that.is.a('string');\r",
+							"        pm.expect(joke).to.have.property('id').that.is.a('number');\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://official-joke-api.appspot.com/jokes/ten"
+			},
+			"response": []
+		},
+		{
+			"name": "Test 8",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required content type - application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is within an acceptable range\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response schema is a valid JSON array format\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('array');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://official-joke-api.appspot.com/types"
+			},
+			"response": []
+		},
+		{
+			"name": "Test 9",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData).to.have.property('type');\r",
+							"    pm.expect(responseData).to.have.property('setup');\r",
+							"    pm.expect(responseData).to.have.property('punchline');\r",
+							"    pm.expect(responseData).to.have.property('id');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Type, setup, and punchline are non-empty strings\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.type).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Type should not be empty\");\r",
+							"  pm.expect(responseData.setup).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Setup should not be empty\");\r",
+							"  pm.expect(responseData.punchline).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Punchline should not be empty\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"ID is a non-negative integer\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.id).to.be.a('number');\r",
+							"    pm.expect(responseData.id).to.be.at.least(0);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://official-joke-api.appspot.com/jokes/random"
+			},
+			"response": []
+		},
+		{
+			"name": "Test 10",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData).to.have.property('type');\r",
+							"    pm.expect(responseData).to.have.property('setup');\r",
+							"    pm.expect(responseData).to.have.property('punchline');\r",
+							"    pm.expect(responseData).to.have.property('id');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Type, setup, and punchline are non-empty strings\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.type).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Type should not be empty\");\r",
+							"    pm.expect(responseData.setup).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Setup should not be empty\");\r",
+							"    pm.expect(responseData.punchline).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Punchline should not be empty\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"ID is a non-negative integer\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData.id).to.be.a('number');\r",
+							"  pm.expect(responseData.id).to.be.at.least(0);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://official-joke-api.appspot.com/random_joke"
+			},
+			"response": []
+		}
+	]
+}
