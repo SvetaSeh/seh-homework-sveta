@@ -9,8 +9,9 @@ async function getWeb() {
             await fetch('https://lms.academius.io/api/graphql');
             console.log('You have access second website');
         } catch (error) {
-            if (error.message !== 'Error second website')
-                throw error;
+            const response2 = await fetch('https://lms.academius.io/api/graphql');
+            if (!response2.ok) throw new Error('Error second website');
+            throw error;
         }
         console.log('Website exist');
     }
