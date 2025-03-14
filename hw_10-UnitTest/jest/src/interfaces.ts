@@ -7,10 +7,10 @@ export interface Post {
 }
 
 export class PostSummary {
-    private postId: number;
-    private shortName: string;
-    private email: string;
-    private bodyLength: number;
+    public postId: number;
+    public shortName: string;
+    public email: string;
+    public bodyLength: number;
 
     public constructor(post: Post) {
         this.postId = post.postId;
@@ -18,18 +18,4 @@ export class PostSummary {
         this.email = post.email;
         this.bodyLength = post.body.length;
     }
-}
-
-export async function newPost(): Promise<Post> {
-    const response = await fetch('https://jsonplaceholder.typicode.com/comments/1');
-    const json = (await response.json()) as Post;
-    return json;
-}
-
-export async function main(): Promise<void> {
-    const post = await newPost();
-    const summary = new PostSummary(post);
-    console.log(summary);
-}
-
-main();
+};

@@ -11,8 +11,7 @@ const config: JestConfigWithTsJest = {
     testPathIgnorePatterns: ['./dist'],
     clearMocks: true,
     coverageProvider: 'v8',
-    testMatch: ['**/tests/**/*.[t]s?(x)', '**/?(*.)+(spec|test).[t]s?(x)'],
-    globalSetup: './src/jest-global-setup.ts'
+    testMatch: ['**/tests/**/*.[t]s?(x)', '**/?(*.)+(spec|test).[t]s?(x)']
 };
 
 export default config;
