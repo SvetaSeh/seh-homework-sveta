@@ -1,0 +1,73 @@
+Selected website https://prom.ua/ua/
+
+CSS Selectors for Testing
+div [data-qaid="search_form"] - search, enter "Блендер"
+div [data-qaid="search_btn"] - button Search
+div [data-qaid="product_gallery"] - product gallery display on request
+div [data-product-id="2126362056"] - required product
+div [data-qaid="buy-button"] - Buy button
+div [data-qaid="shopping_cart"] - Shopping cart button
+div [data-testid="remove_btn"] - removing the product from the Shopping cart
+
+
+XPath Selectors for Testing
+//div [@data-qaid="search_form"] - search, enter "Блендер"
+//button [@data-qaid="search_btn"] - button Search
+//div[@data-qaid="product_gallery"] - product gallery display on request
+//div [@data-product-id="2126362056"] - required product
+//button[@data-qaid="buy-button"] - Buy button
+//button[@data-qaid="shopping_cart"] - Shopping cart button
+//button [@data-testid="remove_btn"] - removing the product from the Shopping cart
+
+
+Test case 1 - Сhecking product search
+1. Open website
+2. Wait for loading
+3. Click on search form
+4. Enter name product
+5. Click button Search
+
+Expected result: product catalog is displayed upon request in search input
+
+Test case 2 - Put selected produkt to Shopping cart 
+1. Open website
+2. Wait for loading
+3. Click on search form
+4. Enter name product
+5. Click button Search
+6. Find wishfull
+7. Click on this product
+8. Wait opening product page
+9. Click on button Buy
+
+Expected result: selected produkt moving to Shopping cart
+
+Test case 3 - removing an item from the Shopping cart
+
+1. Open website
+2. Wait for loading
+3. Click on button Shopping cart
+4. Wait for loading
+5. Click on the button removing
+
+Expected result: selected produkt removing from Shopping cart
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
